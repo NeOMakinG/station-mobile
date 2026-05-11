@@ -23,16 +23,17 @@ export const DevFlags = {
 } as const
 
 /**
- * Production-flippable flags. Default off; flipped via Expo env (OTA-deployable).
+ * Production-flippable flags. Default off; flip by editing the literal below
+ * and shipping an OTA update — no env var or build-system change required.
  *
- * - `OpenLegacyStationWebView`: exposes the "Open legacy Station (web)" link on
- *   MigrationHome. Disabled by default — users find their legacy wallets via the
- *   hidden discovery WebView instead, which surfaces them in the regular
- *   wallets-found list. The link is kept available for QA/support escalation.
+ * - `OpenLegacyStationWebView`: exposes the "Open legacy Station" link on
+ *   MigrationHome. Disabled by default — users find their legacy wallets via
+ *   the hidden discovery WebView instead, which surfaces them in the regular
+ *   wallets-found list. The link is kept available for support escalation
+ *   (flip to true + OTA when a user needs the manual fallback).
  */
 export const FeatureFlags = {
-  OpenLegacyStationWebView:
-    process.env.EXPO_PUBLIC_OPEN_LEGACY_STATION_WEBVIEW === 'true',
+  OpenLegacyStationWebView: false,
 } as const
 
 // Gated on __DEV__ so production builds can never read a truthy value
