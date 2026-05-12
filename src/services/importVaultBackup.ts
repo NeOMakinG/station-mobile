@@ -73,7 +73,7 @@ function assertImportableFastVault(vault: {
 
   if (!vault.signers.some(isServerPartyId)) {
     throw new Error(
-      'This vault has no server-side Vultisig share. Multi-share vaults cannot be used in Station.'
+      'Currently only Fast Vaults are supported. Please import a Fast Vault to use Station.'
     )
   }
 }

@@ -202,7 +202,7 @@ describe('importVaultBackup — eligibility', () => {
     expect(restored.signers).toEqual(['Device-1', 'Server-1'])
   })
 
-  it('rejects multi-share DKLS vaults with no server signer', () => {
+  it('rejects Secure Vault (multi-device) imports with a Fast Vault message', () => {
     const content = buildVaultContainer({
       signers: ['iPhone', 'MacBook', 'iPad'],
       localPartyId: 'iPhone',
@@ -213,7 +213,7 @@ describe('importVaultBackup — eligibility', () => {
         content,
         fileName: 'multi-share.vult',
       })
-    ).toThrow(/no server-side Vultisig share/i)
+    ).toThrow(/only Fast Vaults are supported/i)
   })
 
   it('rejects server-side vault shares', () => {
